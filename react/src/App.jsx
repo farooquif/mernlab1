@@ -1,7 +1,8 @@
 import React from 'react';
 import Sock from "./components/Sock";
 import Footer from "./components/Footer";
-import Search from "./components/Search"; // Import the Search component
+import Search from "./components/Search";
+import PromoCard from "./components/PromoCard"; // Import the PromoCard component
 import sock_data from './assets/sock.json';
 
 function App() {
@@ -37,18 +38,20 @@ function App() {
                 <a className="nav-link disabled" aria-disabled="true">Disabled</a>
               </li>
             </ul>
-            <Search /> {/* Replace the search form with the Search component */}
+            <Search />
           </div>
         </div>
       </nav>
       <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-
         <div className="container-fluid">
           <div className="row">
             Both socks and space rockets 🚀 will take you to new heights, but only one will get cold feet!
-            <div className="card-container">
-              <Sock data={sock_data} />
+            <div className="card-container" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+              {sock_data.map((sock) => (
+                <Sock key={sock.id} data={sock} />
+              ))}
             </div>
+            <PromoCard /> {/* Render the PromoCard component */}
             <Footer environment="DEVELOPMENT" />
           </div>
         </div>
